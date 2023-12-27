@@ -1,110 +1,150 @@
-.backimg {
-    height: 80px;
-    width: 90px;
-    background-position: left top;
-    background-size: 50%;
-    background-repeat: no-repeat;
-}
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
 
+/* sign in FORM */
+#logreg-forms{
+    width:40%;
+    margin: 12% auto;
+    border-radius:20px;
+    background-color:#f3f3f3;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-html {
-    color: #333;
-    font-size: 62.5%;
-    font-family: 'Open Sans', sans-serif;
-}
-.main {
-    background: #f1f1f1;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-.form {
-    width: 360px;
-    min-height: 100px;
-    padding: 32px 24px;
-    text-align: center;
-    background: #fff;
-    border-radius: 2px;
-    margin: 24px;
-    align-self: center;
-    box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
-}
-.form .heading {
-    font-size: 2rem;
-}
-.form .desc {
-    text-align: center;
-    color: #636d77;
-    font-size: 1.6rem;
-    font-weight: lighter;
-    line-height: 2.4rem;
-    margin-top: 16px;
-    font-weight: 300;
-}
-
-.form-group {
-    display: flex;
-    margin-bottom: 16px;
-    flex-direction: column;
-}
-
-.form-label,
-.form-message {
-    text-align: left;
-}
-
-.form-label {
-    font-weight: 700;
-    padding-bottom: 6px;
-    line-height: 1.8rem;
-    font-size: 1.4rem;
-}
-
-.form-control {
-    height: 40px;
-    padding: 8px 12px;
-    border: 1px solid #b3b3b3;
-    border-radius: 3px;
-    outline: none;
-    font-size: 1.4rem;
-}
-
-.form-control:hover {
-    border-color: #1dbfaf;
-}
-
-.form-group.invalid .form-control {
-    border-color: #f33a58;
-}
-
-.form-group.invalid .form-message {
-    color: #f33a58;
-}
-
-.form-message {
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    padding: 4px 0 0;
-}
-
-.form-submit {
-    outline: none;
-    background-color: #63bf1d;
-    margin-top: 12px;
-    padding: 12px 16px;
-    font-weight: 600;
-    color: #fff;
-    border: none;
+#logreg-forms form {
     width: 100%;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 15px;
+    margin: auto;
+}
+#logreg-forms .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 12px;
+    font-size: 16px;
+}
+#logreg-forms .form-control:focus {
+    z-index: 2;
+}
+#logreg-forms .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#logreg-forms .form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-.form-submit:hover {
-    background-color: #1ac7b6;
+#logreg-forms .social-login{
+    width:400px;
+    margin:0 auto;
+    margin-bottom: 14px;
+}
+#logreg-forms .social-btn{
+    font-weight: 100;
+    color:white;
+    width:190px;
+    font-size: 0.9rem;
+}
+
+#logreg-forms a{
+    display: block;
+    padding-top:10px;
+    color:lightseagreen;
+}
+
+#logreg-form .lines{
+    width:200px;
+    border:1px solid red;
+}
+
+#logreg-forms button[type="submit"]{
+    margin-top:10px;
+}
+
+#logreg-forms .facebook-btn{
+    background-color:#3C589C;
+}
+
+#logreg-forms .google-btn{
+    background-color: #DF4B3B;
+}
+
+#logreg-forms .form-reset, #logreg-forms .form-signup{
+    display: none;
+}
+
+#logreg-forms .form-signup .social-btn{
+    width:210px;
+}
+
+#logreg-forms .form-signup input {
+    margin-bottom: 2px;
+}
+
+.form-signup .social-login{
+    width:210px !important;
+    margin: 0 auto;
+}
+
+.form-check{
+    padding-top:20px;
+}
+
+.email_send{
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding around text */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Cursor style on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+.email_send:hover{
+    background-color: #0056b3;
+}
+#code {
+    padding: 10px; /* Padding for the code input */
+    border: 1px solid #ced4da; /* Border for the code input */
+    border-radius: 5px; /* Rounded corners for the code input */
+    font-size: 14px; /* Font size for the code input */
+}
+
+
+
+
+
+/*Mobile*/
+
+@media screen and (max-width:500px){
+    #logreg-forms{
+        width:300px;
+    }
+
+    #logreg-forms  .social-login{
+        width:200px;
+        margin:0 auto;
+        margin-bottom: 10px;
+    }
+    #logreg-forms  .social-btn{
+        font-size: 1.3rem;
+        font-weight: 100;
+        color:white;
+        width:200px;
+        height: 56px;
+
+    }
+    #logreg-forms .social-btn:nth-child(1){
+        margin-bottom: 5px;
+    }
+    #logreg-forms .social-btn span{
+        display: none;
+    }
+    #logreg-forms  .facebook-btn:after{
+        content:'Facebook';
+    }
+
+    #logreg-forms  .google-btn:after{
+        content:'Google+';
+    }
+
 }

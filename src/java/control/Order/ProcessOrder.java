@@ -1,12 +1,13 @@
-
 package control.Order;
 
 import dao.DAO;
+import entity.AES;
 import entity.Cart;
+import entity.Order;
+import entity.OrderDetail;
 import entity.Product;
 import entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -23,24 +25,53 @@ import java.util.List;
 @WebServlet(name = "ProcessOrder", urlPatterns = {"/processorder"})
 public class ProcessOrder extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phonenumber");
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("acc");
+        String userName = request.getParameter("username");
+
+        LocalDate curDate = LocalDate.now();
+        String date = curDate.toString();
+
         DAO dao = new DAO();
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("acc");
+        if (user == null) {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            user = dao.checkUserExist(email);
+            System.out.println("ProcessOrder.java: " + user);
+            if (user != null) {
+                final String secretKey = "TrinhVietHieu0112!!!@@@";
+                String passwordDecrypted = AES.decrypt(user.getUser_password(), secretKey);
+                if (password.equals(passwordDecrypted)) {
+                    session.setAttribute("acc", user);
+                    Cookie uid = new Cookie("id", user.getUser_id() + "");
+                    Cookie cu = new Cookie("email", email);
+                    Cookie cp = new Cookie("pass", password);
+                    uid.setMaxAge(0);
+                    cu.setMaxAge(0);
+                    cp.setMaxAge(0);
+                    response.addCookie(uid);
+                    response.addCookie(cu);
+                    response.addCookie(cp);
+                } else {
+                    String ms = "Login Fail";
+                    request.setAttribute("login_wrong", ms);
+                    request.getRequestDispatcher("Info.jsp").forward(request, response);
+                }
+            } else {
+                String ms = "Login Fail";
+                request.setAttribute("login_wrong", ms);
+                request.getRequestDispatcher("Info.jsp").forward(request, response);
+            }
+        }
+
         List<Product> listP = dao.getAllProduct();
         Cookie[] arr = request.getCookies();
         String txt = "";
@@ -48,63 +79,27 @@ public class ProcessOrder extends HttpServlet {
             for (Cookie o : arr) {
                 if (o.getName().equals("cart")) {
                     txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
                 }
             }
         }
         Cart cart = new Cart(txt, listP);
-//        for (Cookie o : arr) {
-//            if (o.getName().equals("cart")) {
-//                o.setMaxAge(0);
-//                response.addCookie(o);
-//            }
-//        }
-        int sizeCart = cart.getItem().size();
-        if (sizeCart > 0) {
-            dao.addOrder(a, cart, address, phoneNumber);
-        }
-//        request.getRequestDispatcher("home").forward(request, response);
-        response.sendRedirect("home");
+        System.out.println("ProcessOrder.java: " + cart);
+        Order order = new Order(user.getUser_id(), date, cart.getTotalMoney(), address, phoneNumber);
+        session.setAttribute("cart", cart);
+        session.setAttribute("username", userName);
+        session.setAttribute("order", order);
+        response.sendRedirect("invoicing");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

@@ -1,9 +1,9 @@
-
 package entity;
 
 public class Item {
+
     private Product product;
-    private int quantity; 
+    private int quantity;
     private String sizeProduct;
     private double price;
 
@@ -53,5 +53,5 @@ public class Item {
     public String toString() {
         return "Item{" + "product=" + product + ", quantity=" + quantity + ", sizeProduct=" + sizeProduct + ", price=" + price + '}';
     }
-    
+
 }

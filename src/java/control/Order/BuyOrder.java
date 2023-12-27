@@ -1,4 +1,3 @@
-
 package control.Order;
 
 import dao.DAO;
@@ -36,15 +35,13 @@ public class BuyOrder extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
-
+        System.out.println(a);
         DAO dao = new DAO();
         List<Order> listO = dao.getOrderByUserID(a.getUser_id());
         List<OrderDetail> listOD = dao.getAllOrderDetail();
-        
         request.setAttribute("listOD", listOD);
         request.setAttribute("listO", listO);
         request.getRequestDispatcher("BuyOrder.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

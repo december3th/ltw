@@ -12,8 +12,6 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
-
-
                 <c:if test="${sessionScope.acc != null}">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Hello ${sessionScope.acc.user_name}</a>

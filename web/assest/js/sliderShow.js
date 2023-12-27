@@ -1,48 +1,21 @@
-const slides = document.querySelector('.slide-show');
-const prevBtn = document.querySelector('.slide-button--prev');
-const nextBtn = document.querySelector('.slide-button--next');
-const pagination = document.querySelectorAll('.slide-left--pagination-bullet');
+const sliderWrapper = document.querySelector('.slider-wrapper');
+const slides = document.querySelectorAll('.slide');
+const slideWidth = slides[0].clientWidth;
+let currentIndex = 0;
+let direction = 1; // 1: forward, -1: backward
 
-let slideIndex = 0;
+function startSlider() {
+    setInterval(() => {
+        currentIndex += direction;
+        sliderWrapper.style.transition = 'transform 1s ease-in-out';
+        sliderWrapper.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 
-let interval = setInterval(() => {
-    nextSlider();
-}, 2000);
-
-nextBtn.addEventListener('click', () => {
-    clearInterval(interval);
-    nextSlider();
-    interval = setInterval(() => {
-        nextSlider();
-    }, 2000);
-});
-
-prevBtn.addEventListener('click', () => {
-    clearInterval(interval);
-    prevSlider();
-    interval = setInterval(() => {
-        nextSlider();
-    }, 2000);
-});
-
-function nextSlider() {
-    if (slideIndex === 3) {
-        slideIndex = 0;
-    } else {
-        slideIndex++;
-    }
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-    pagination.forEach((pagi, index) => {
-        if (index === slideIndex) pagi.classList.add('active');
-        else pagi.classList.remove('active');
-    });
+        if (currentIndex >= slides.length - 1) {
+            direction = -1;
+        } else if (currentIndex <= 0) {
+            direction = 1;
+        }
+    }, 3500);
 }
 
-function prevSlider() {
-    if (slideIndex === 0) {
-        slideIndex = 3;
-    } else {
-        slideIndex--;
-    }
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-}
+startSlider();

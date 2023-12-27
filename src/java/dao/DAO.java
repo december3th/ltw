@@ -1,4 +1,3 @@
-
 package dao;
 
 import context.DBContext;
@@ -9,7 +8,9 @@ import entity.Order;
 import entity.OrderDetail;
 import entity.Product;
 import entity.User;
+import jakarta.servlet.http.Cookie;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -181,6 +182,46 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public Cart getLastOrder(User user) {
+        Cart cart = new Cart();
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT *\n"
+                + "FROM Order_Details\n"
+                + "LEFT JOIN Products ON Order_Details.product_id = Products.product_id\n"
+                + "LEFT JOIN Orders ON Order_Details.order_id = Orders.order_id\n"
+                + "WHERE Orders.user_id = ?\n"
+                + "  AND Order_Details.order_id = (\n"
+                + "    SELECT TOP (1) order_id\n"
+                + "    FROM Orders\n"
+                + "    WHERE user_id = 1\n"
+                + "    ORDER BY order_id DESC\n"
+                + "  );";
+        try ( PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, user.getUser_id());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product(rs.getInt("product_id"),
+                        rs.getString("product_name"),
+                        rs.getInt("quantityM"),
+                        rs.getInt("quantityL"),
+                        rs.getInt("quantityXL"),
+                        rs.getInt("quantity2XL"),
+                        rs.getDouble("price"),
+                        rs.getString("describe"),
+                        rs.getString("image1"),
+                        rs.getString("image2"),
+                        rs.getString("image3"),
+                        rs.getString("image4"));
+                Item item = new Item(product, rs.getInt("quantity"), rs.getString("size"), rs.getFloat("price"));
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        cart.setItems(items);
+        return cart;
     }
 
     public Product getLast() {
@@ -526,21 +567,16 @@ public class DAO extends DBContext {
         }
     }
 
-    public void addOrder(User user, Cart cart, String address, String phoneNumber) {
-        String query = "INSERT INTO [dbo].[Orders]\n"
-                + "           ([user_id]\n"
-                + "           ,[order_date]\n"
-                + "           ,[total_price]\n"
-                + "           ,[address]\n"
-                + "           ,[phone_number]\n"
-                + "           ,[status])\n"
-                + "     VALUES\n"
-                + "           (? , ? , ? , ?, ?, ?)";
-        LocalDate curDate = LocalDate.now();
-        String date = curDate.toString();
-        try {
+    public void addOrder(User user, Cart cart, String address, String phoneNumber, String date) {
+        System.out.println("DAO.java: " + user);
+        System.out.println("DAO.java: " + cart);
+        System.out.println("DAO.java: " + address);
+        System.out.println("DAO.java: " + phoneNumber);
+        System.out.println("DAO.java: " + date);
+
+        String query = "INSERT INTO [dbo].[Orders]([user_id], [order_date], [total_price], [address], [phone_number], [status]) VALUES (? , ? , ? , ?, ?, ?)";
+        try ( PreparedStatement ps = connection.prepareStatement(query)) {
             // add order
-            ps = connection.prepareStatement(query);
             ps.setInt(1, user.getUser_id());
             ps.setString(2, date);
             ps.setDouble(3, cart.getTotalMoney());
@@ -555,6 +591,7 @@ public class DAO extends DBContext {
 //            //add orderDetails;
             if (rs2.next()) {
                 int order_id = rs2.getInt("order_id");
+                System.out.println("DAO.java: " + order_id);
                 for (Item i : cart.getItem()) {
                     String query3 = "INSERT INTO [dbo].[Order_Details]\n"
                             + "           ([order_id]\n"
@@ -632,6 +669,28 @@ public class DAO extends DBContext {
         return list;
     }
 
+    public Order getLastOrderByUserID(User user) {
+        String query = "select TOP(1) * from [orders] where user_id = ? order by order_id desc";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, user.getUser_id());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Order(rs.getInt("order_id"),
+                        rs.getInt("user_id"),
+                        rs.getString("order_date"),
+                        rs.getDouble("total_price"),
+                        rs.getString("address"),
+                        rs.getString("phone_number"),
+                        rs.getString("status")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public List<Order> getOrderByUserID(int user_id) {
         List<Order> list = new ArrayList<>();
         String query = "select * from [orders] where user_id = ? order by order_id desc";
@@ -660,7 +719,7 @@ public class DAO extends DBContext {
 
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
-        String query = "select * from [orders]  order by order_id desc";
+        String query = "select * from [orders]   where [status] like 'Pending Approval' order by order_id desc";
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();

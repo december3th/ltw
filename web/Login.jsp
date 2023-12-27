@@ -39,9 +39,12 @@
                 <input name="email"  type="email" id="inputEmail" class="form-control" placeholder="Gmail" value="${cookie.email.value}" required="" autofocus="">
                 <input name="pass"  type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" value="${cookie.pass.value}" required="">
 
-                <div class="form-group form-check">
-                    <input name="remember" value="ON" type="checkbox" ${(cookie.remember.value eq "ON") ? "checked": ""} class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Nhớ</label>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input name="remember" value="ON" type="checkbox" ${(cookie.remember.value eq "ON") ? "checked": ""} class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Nhớ</label>
+                    </div>
+                    <a href="ForgotPassword.jsp">Quên mật khẩu </a>
                 </div>
 
                 <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>Đăng nhập</button>
@@ -75,11 +78,11 @@
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
+
         <script src="./js/signup.js"></script>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
         <script>
-                function sendCode(){
+                    function sendCode() {
                         var name = 'code to verify';
                         var email = document.querySelector('#inputEmail2').value;
                         var message;
@@ -95,7 +98,7 @@
                             Subject: name,
                             Body: message
                         }).then(function (message) {
-                            alert("Email sent successfully to: "+ email);
+                            alert("Email sent successfully to: " + email);
                         });
                     }
         </script>

@@ -1,0 +1,107 @@
+.div-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 110px;
+}
+
+.product-name--item.underline a {
+    text-decoration: underline;
+}
+
+.size-order--content {
+    font-size: medium;
+}
+
+.size-order--content label {
+    margin: 0 5px;
+}
+
+.size-order--content input {
+    cursor: pointer;
+}
+
+.quantity-order--content {
+    font-size: medium;
+
+}
+
+.quantity-order--content label {
+    font-size: medium;
+    margin: 0 11px;
+}
+
+.filter {
+    gap: 10px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    font-size: 14px;
+    margin-bottom: 20px;
+    padding-left: 40px;
+}
+
+.titleFilter {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+
+.buttonFilter {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.size-order--content {
+    padding: 10px;
+}
+
+.left-content {
+    position: fixed;
+    top: 160px;
+    left: 5px;
+}
+
+.right-content {
+    position: fixed;
+    right: 25px;
+    top: 160px;
+}
+
+.right-item {
+    margin-bottom: 20px;
+}
+
+.right-item-content {
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.loai-sp,
+.gia-sp {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.content{
+    width: 1200px;
+}
+
+.grid-product {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.grid-item {
+    background-color: #eee;
+    padding: 20px;
+    text-align: center;
+}
+.hidden {
+    display: none;
+}

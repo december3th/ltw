@@ -1,7 +1,7 @@
-
 package entity;
 
 public class Order {
+
     private int order_id;
     private int user_id;
     private String order_date;
@@ -11,6 +11,14 @@ public class Order {
     private String status;
 
     public Order() {
+    }
+
+    public Order(int user_id, String order_date, double total_price, String address, String phone_number) {
+        this.user_id = user_id;
+        this.order_date = order_date;
+        this.total_price = total_price;
+        this.address = address;
+        this.phone_number = phone_number;
     }
 
     public Order(int order_id, int user_id, String order_date, double total_price, String address, String phone_number, String status) {
@@ -83,5 +91,5 @@ public class Order {
     public String toString() {
         return "Order{" + "order_id=" + order_id + ", user_id=" + user_id + ", order_date=" + order_date + ", total_price=" + total_price + ", address=" + address + ", phone_number=" + phone_number + ", status=" + status + '}';
     }
-    
+
 }

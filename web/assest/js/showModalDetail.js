@@ -1,16 +1,12 @@
-
-
 function showModalDetail(id) {
-
     //hien detail
     var tmp = '.modal-detail-' + id;
-    let modalDetail = document.querySelector(tmp);
+    var modalDetail = document.querySelector(tmp);
     modalDetail.classList.remove('hidden');
-
     //lay so luong theo size
     var classQuantity = '.quantity-order--content-' + id + ' label';
     var quantity = document.querySelectorAll(classQuantity);
-
+    
     //trang thai radio theo so luong size
     var classSize = '.size-order--content-' + id + ' input';
     var size = document.querySelectorAll(classSize);
@@ -36,17 +32,7 @@ function showModalDetail(id) {
     }
 }
 function closeDetail(id) {
-
     var tmp = '.modal-detail-' + id;
-    let modalDetail = document.querySelector(tmp);
+    var modalDetail = document.querySelector(tmp);
     modalDetail.classList.add('hidden');
-
-
 }
-//        overlayDetail.addEventListener('click', () => {
-//            modalDetail.classList.add('hidden');
-//        });
-//
-//        closeDetail.addEventListener('click', () => {
-//            modalDetail.classList.add('hidden');
-//        });

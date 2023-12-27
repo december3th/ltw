@@ -23,6 +23,14 @@ public class Cart extends Item {
         return items;
     }
 
+    public void updateQuantity(int productId, String size, int newQuantity) {
+        for (Item item : items) {
+            if (productId == item.getProduct().getProduct_id() && item.getSizeProduct().equals(size)) {
+                item.setQuantity(newQuantity);
+            }
+        }
+    }
+
     //Tra ve item trong gio hang theo id
     public Item getItemById(int id, String size) {
         for (Item i : items) {
@@ -78,6 +86,7 @@ public class Cart extends Item {
 
     public Cart(String txt, List<Product> list) {
         items = new ArrayList<>();
+
         try {
             if (txt != null && txt.length() != 0) {
                 txt = txt.trim();
@@ -98,19 +107,24 @@ public class Cart extends Item {
         }
     }
 
-    public static void main(String[] args) {
-        String txt = " 1:1          ,2:2,3:3";
-        txt = txt.trim();
-        if (txt != null && txt.length() != 0) {
-            String[] s = txt.split(",");
-            for (String i : s) {
-                i = i.trim();
-                String kq[] = i.split(":");
-                int id = Integer.parseInt(kq[0]);
-                int quantity = Integer.parseInt(kq[1]);
-                System.out.println(id + " " + quantity);
-            }
-        }
-
+//    public static void main(String[] args) {
+//        String txt = " 1:1          ,2:2,3:3";
+//        txt = txt.trim();
+//        if (txt != null && txt.length() != 0) {
+//            String[] s = txt.split(",");
+//            for (String i : s) {
+//                i = i.trim();
+//                String kq[] = i.split(":");
+//                int id = Integer.parseInt(kq[0]);
+//                int quantity = Integer.parseInt(kq[1]);
+//                System.out.println(id + " " + quantity);
+//            }
+//        }
+//
+//    }
+    @Override
+    public String toString() {
+        return "Cart{" + "items=" + items + '}';
     }
+
 }

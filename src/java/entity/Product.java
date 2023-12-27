@@ -1,7 +1,7 @@
-
 package entity;
 
 public class Product {
+
     /*
        ID varchar(10)  primary key,
        [name] [nvarchar](max) NULL,
@@ -11,12 +11,12 @@ public class Product {
 	[describe] [nvarchar](max) NULL,
 	[image] [nvarchar](max) NULL,
        [cid] [int] references Categories(ID),
-    */
+     */
     private int product_id;
     private String name;
-    private int quantityM , quantityL , quantityXL , quantity2XL;
+    private int quantityM, quantityL, quantityXL, quantity2XL;
     private double price;
-    private String describe,image1 , image2 , image3 , image4;
+    private String describe, image1, image2, image3, image4;
 
     public Product() {
     }
@@ -131,6 +131,5 @@ public class Product {
     public void setImage4(String image4) {
         this.image4 = image4;
     }
-    
+
 }
-    

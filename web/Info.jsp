@@ -13,141 +13,49 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link href="./css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./assest/css/login.css">
-        <style>
-            .backimg {
-                height: 80px;
-                width: 90px;
-                background-position: left top;
-                background-size: 50%;
-                background-repeat: no-repeat;
-            }
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-            }
-            html {
-                color: #333;
-                font-size: 62.5%;
-                font-family: 'Open Sans', sans-serif;
-            }
-            .main {
-                background: #f1f1f1;
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-            }
-            .form {
-                width: 360px;
-                min-height: 100px;
-                padding: 32px 24px;
-                text-align: center;
-                background: #fff;
-                border-radius: 2px;
-                margin: 24px;
-                align-self: center;
-                box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
-            }
-            .form .heading {
-                font-size: 2rem;
-            }
-            .form .desc {
-                text-align: center;
-                color: #636d77;
-                font-size: 1.6rem;
-                font-weight: lighter;
-                line-height: 2.4rem;
-                margin-top: 16px;
-                font-weight: 300;
-            }
-
-            .form-group {
-                display: flex;
-                margin-bottom: 16px;
-                flex-direction: column;
-            }
-
-            .form-label,
-            .form-message {
-                text-align: left;
-            }
-
-            .form-label {
-                font-weight: 700;
-                padding-bottom: 6px;
-                line-height: 1.8rem;
-                font-size: 1.4rem;
-            }
-
-            .form-control {
-                height: 40px;
-                padding: 8px 12px;
-                border: 1px solid #b3b3b3;
-                border-radius: 3px;
-                outline: none;
-                font-size: 1.4rem;
-            }
-
-            .form-control:hover {
-                border-color: #1dbfaf;
-            }
-
-            .form-group.invalid .form-control {
-                border-color: #f33a58;
-            }
-
-            .form-group.invalid .form-message {
-                color: #f33a58;
-            }
-
-            .form-message {
-                font-size: 1.2rem;
-                line-height: 1.6rem;
-                padding: 4px 0 0;
-            }
-
-            .form-submit {
-                outline: none;
-                background-color: blue;
-                margin-top: 12px;
-                padding: 12px 16px;
-                font-weight: 600;
-                color: #fff;
-                border: none;
-                width: 100%;
-                font-size: 14px;
-                border-radius: 8px;
-                cursor: pointer;
-            }
-
-            .form-submit:hover {
-                background-color: #1ac7b6;
-            }
-        </style>
+        <link rel="stylesheet" href="./assest/css/info.css">
     </head>
     <body>
         <div class="main">
-            <form action="processorder" method="get" class="form" id="form2">
-
-                <form action="processorder" method="POST" class="form" id="form2">
-
-                    <h3 class="heading">Thông tin nhận hàng</h3>
-
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Địa chỉ</label>
-                        <input type="text" id="address" name="address" placeholder="Địa chỉ"class="form-control" required="">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="code" class="form-label">Số điện thoại</label>
-                        <input type="text" id="phonenumber" name="phonenumber" placeholder="Số điện thoại"class="form-control" required="">
-                        <span class="form-message"></span>
-                    </div>                  
-                    <button class="form-submit" type="submit">Continue</button>
-                </form>
-            </form>
+            <div class="main-form">
+                <div class="img_shop"><img src="https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-flat-shop-image_1127540.jpg" alt="alt"/></div>
+                <div class=""div-form">
+                    <form action="processorder" method="POST" class="form" id="form2" autocomplete="off">
+                        <div style="width: 100%">
+                            <h3 class="heading">Thông tin nhận hàng</h3>
+                            <c:if test="${not empty login_wrong}">
+                                <h3>${login_wrong}</h3>
+                            </c:if>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" id="email" name="email" value="${acc.getUser_email()}" class="form-control" required="" autocomplete="off" ${acc.getUser_email() != null ? 'disabled' : ''}>
+                            </div>
+                            <c:if test="${empty acc}">
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Password" class="form-control"  autocomplete="off">
+                                </div> 
+                            </c:if>
+                            <c:if test="${not empty acc}">
+                                <div class="form-group">
+                                    <label for="username" class="form-label">Họ Và Tên</label>
+                                    <input type="text" value="${acc.getUser_name()}" id="username" name="username" class="form-control"  autocomplete="off"  ${acc.getUser_name()!= null ? 'disabled' : ''}>
+                                </div> 
+                            </c:if>
+                            <div class="form-group">
+                                <label for="address" class="form-label">Địa Chỉ</label>
+                                <input type="text" id="address" name="address" placeholder="Địa chỉ"class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="code" class="form-label">Số Điện Thoại</label>
+                                <input type="text" id="phonenumber" name="phonenumber" placeholder="Số điện thoại"class="form-control" required="">
+                                <span class="form-message"></span>
+                            </div>                  
+                            <button class="form-submit" type="submit" style="font-size: 20px">Tiếp Tục</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

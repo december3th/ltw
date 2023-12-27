@@ -5,16 +5,12 @@
 
 package control;
 
-import dao.DAO;
 import dao.NewsDAO;
-import entity.Cart;
 import entity.News;
-import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -83,22 +79,6 @@ public class NewsServelet extends HttpServlet {
         request.setAttribute("page", page);
         
         request.setAttribute("num", num);
-        
-        DAO dao = new DAO();
-        List<Product> listPP = dao.getAllProduct();
-        String txt = "";
-        Cookie [] arr = request.getCookies();
-        if(arr != null){
-            for(Cookie x : arr){
-                if(x.getName().equals("cart")){
-                    txt = x.getValue();
-                }
-            }
-        }
-        Cart cart = new Cart(txt , listPP);
-        int sizeCart = cart.getItem().size();
-        request.setAttribute("sizeCart", sizeCart);
-        
         request.getRequestDispatcher("news.jsp").forward(request, response);
     } 
 

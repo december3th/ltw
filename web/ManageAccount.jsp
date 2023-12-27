@@ -9,7 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Manage Account</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        
+        <link rel="stylesheet" href="./assest/css/manager-account.css">
+
         <script type="text/javascript">
             function doDelete(id) {
                 if (confirm("bạn chắc chắn muốn xóa")) {
@@ -17,11 +18,6 @@
                 }
             }
         </script>
-        <style>
-            .account {
-                text-decoration: underline;
-            }
-        </style>
     <body>
         <jsp:include page="HeaderManage.jsp"></jsp:include>
 
@@ -32,47 +28,46 @@
                             <div class="left">
                                 <h2>Quản lý <b>tài khoản</b></h2>
                             </div>
-                            <div class="right">
-                                <a href="AddAccount.jsp"><i class="fa-solid fa-plus"></i><span>Thêm tài khoản</span></a>					
-                            </div>
+
                         </div>
                     </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên</th>
-                            <th>Gmail</th>
-                            <th>Mật khẩu</th>
-                            <th>Địa chỉ</th>
-                            <th>isAdmin</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <div class="button-add">
+                        <a href="AddAccount.jsp"><i class="fa-solid fa-plus"></i><span>Thêm tài khoản</span></a>			
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Gmail</th>
+                                <th>Địa chỉ</th>
+                                <th>Vai Trò</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <c:forEach items="${listU}" var="o">
                             <tr>
                                 <td>${o.user_id}</td>
                                 <td>${o.user_name}</td>
                                 <td>${o.user_email}</td>
-                                <td>${o.user_password}</td>
                                 <td>${o.address}</td>
-                                <td>${o.isAdmin}</td>
-                                <td>
-                                    <a href="loaduser?uid=${o.user_id}"><i class="fa-regular fa-pen-to-square" title="Sửa"></i></a>
-                                    <a href="#" onclick="doDelete(${o.user_id})"  ><i class="fa-solid fa-trash" title="Xóa"></i></a>
+                                <td>${o.isAdmin == 1 ? "Admin":"Khách Hàng"}</td>
+                                <td style="gap: 30px; justify-content: center; display: flex;">
+
+                                    <a href="loaduser?uid=${o.user_id}"><div style="cursor: pointer;" ><i class="fa-regular fa-pen-to-square fa-2x" title="Sửa"></i></div></a>
+                                    <div style="cursor: pointer;"  onclick="doDelete(${o.user_id})"  ><i class="fa-solid fa-trash fa-2x" title="Xóa"></i></div>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
-                </table>
+                </table
             </div>
-
-            <!--            <a href="home"><button type="button" class="btn btn-primary">Back to home</button>-->
 
         </div>
 
 
+      
         <script src="js/manager.js" type="text/javascript"></script>
     </body>
 </html>

@@ -9,19 +9,16 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="./assest/css/manager-category.css">
+
         <script type="text/javascript">
             function doDelete(id) {
                 if (confirm("bạn chắc chắn muốn xóa")) {
                     window.location = "deletecategory?cid=" + id;
                 }
             }
-            
+
         </script>
-        <style>
-            .category {
-                text-decoration: underline;
-            }
-        </style>
     </head>
     <body>
         <jsp:include page="HeaderManage.jsp"></jsp:include>
@@ -32,12 +29,12 @@
                             <div class="left">
                                 <h2>Quản lý <b>loại sản phẩm</b></h2>
                             </div>
-                            <div class="right">
-                                <a href="AddCategory.jsp"><i class="fa-solid fa-plus"></i><span>Thêm loại sản phẩm</span></a>					
-                            </div>
+
                         </div>
                     </div>
-
+                    <div class="button-add">
+                        <a href="AddCategory.jsp"><i class="fa-solid fa-plus"></i><span>Thêm loại sản phẩm</span></a>			
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -54,8 +51,10 @@
                                 <td>${o.name}</td>
                                 <td>${o.describe}</td>
                                 <td>
-                                    <a href="loadcategory?cid=${o.category_id}"><i class="fa-regular fa-pen-to-square" title="Sửa"></i></a>
-                                    <a href="#" onclick="doDelete(${o.category_id})"  ><i class="fa-solid fa-trash" title="Xóa"></i></a>
+                                    <div class="button-table">
+                                        <a href="loadcategory?cid=${o.category_id}"><i class="fa-regular fa-pen-to-square fa-2x" title="Sửa"></i></a>
+                                        <a href="#" onclick="doDelete(${o.category_id})"  ><i class="fa-solid fa-trash fa-2x" title="Xóa"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>

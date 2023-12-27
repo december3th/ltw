@@ -1,4 +1,3 @@
-
 package control.admin;
 
 import dao.DAO;
@@ -10,70 +9,40 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
  * @author admin
  */
-@WebServlet(name="loadUser", urlPatterns={"/loaduser"})
+@WebServlet(name = "loadUser", urlPatterns = {"/loaduser"})
 public class loadUser extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String uid = request.getParameter("uid");
         DAO dao = new DAO();
         User user = dao.getUserByID(uid);
-        
+        List<User> listU = dao.getAllUser();
         final String secretKey = "TrinhVietHieu0112!!!@@@";
+        request.setAttribute("listU", listU);
         user.setUser_password(AES.decrypt(user.getUser_password(), secretKey));
-//        System.out.println(AES.decrypt(user.getUser_password(), secretKey));
         request.setAttribute("user", user);
+        request.setAttribute("ms", "show");
         request.getRequestDispatcher("EditAccount.jsp").forward(request, response);
-    } 
+    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 }

@@ -1,16 +1,16 @@
 function Cart(id) {
     var classSize = '.size-order--content-' + id + ' input';
     var size = document.querySelectorAll(classSize);
-    var classBorderSize = '.size-order--content-' +id;
+    var classBorderSize = '.size-order--content-' + id;
     let borderSize = document.querySelector(classBorderSize);
-    
+
     var classAction = '.modal-body--buy__form-' + id;
     let Method = document.querySelector(classAction);
-    
-    var classSizeBuy = '.sizeProduct-' +id;
+
+    var classSizeBuy = '.sizeProduct-' + id;
     let sizeProduct = document.querySelector(classSizeBuy);
-    
-    var classButtonBuy  = '.modal-body--buy-' +id +' button';
+
+    var classButtonBuy = '.modal-body--buy-' + id + ' button';
     let buttonBuy = document.querySelector(classButtonBuy);
 
     let valueSize = [];

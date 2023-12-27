@@ -1,4 +1,3 @@
-
 package control.authentication_registration;
 
 import dao.DAO;
@@ -40,26 +39,30 @@ public class LoginControl extends HttpServlet {
 
         DAO dao = new DAO();
         User a = dao.checkUserExist(email);
+        System.out.println("LoginController.java: " + a);
         if (a != null) {
             String passwordDecrypted = AES.decrypt(a.getUser_password(), secretKey);
             if (password.equals(passwordDecrypted)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", a);
 //            session.setMaxInactiveInterval(60*60*24);
-
                 //Cookie remember
+                Cookie uid = new Cookie("id", a.getUser_id() + "");
                 Cookie cu = new Cookie("email", email);
-                Cookie cp = new Cookie("pass", password);
+                Cookie cp = new Cookie("pass", a.getUser_password());
                 Cookie cr = new Cookie("remember", remember);
                 if (remember == null) {
                     cu.setMaxAge(0);
+                    uid.setMaxAge(0);
                     cp.setMaxAge(0);
                     cr.setMaxAge(0);
                 } else {
                     cu.setMaxAge(60 * 60 * 24);
+                    uid.setMaxAge(60 * 60 * 24);
                     cp.setMaxAge(60 * 60 * 24);
                     cr.setMaxAge(60 * 60 * 24);
                 }
+                response.addCookie(uid);
                 response.addCookie(cu);
                 response.addCookie(cp);
                 response.addCookie(cr);
@@ -89,7 +92,7 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("Login.jsp");
     }
 
     /**

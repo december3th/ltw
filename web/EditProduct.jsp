@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,74 +19,66 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>ID</label>
-                                <br>       
                                 <input name="pid" type="text" class="form-control" value="${detail.product_id}" readonly="" required>
                             </div>
                             <div class="form-group">
                                 <label>Tên</label>
-                                <br>       
                                 <input name="name" type="text" class="form-control" value="${detail.name}" required>
                             </div>
-                            <div class="form-group">
-                                <label>Số lượng M</label>
-                                <br>
-                                <input name="quantityM" type="text" class="form-control" value="${detail.quantityM}" required>
+                            <div class="size-div">
+                                <div class="form-group">
+                                    <label>Số lượng M</label>
+                                    <input name="quantityM" type="text" oninput="formatNumberInput(this)" class="form-control" value="${detail.quantityM}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng L</label>
+                                    <input name="quantityL" type="text" oninput="formatNumberInput(this)" class="form-control" value="${detail.quantityL}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng XL</label>
+                                    <input name="quantityXL" type="text" oninput="formatNumberInput(this)" class="form-control" value="${detail.quantityXL}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng 2XL</label>
+                                    <input name="quantity2XL" type="text" oninput="formatNumberInput(this)" class="form-control" value="${detail.quantity2XL}" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Số lượng L</label>
-                                <br>
-                                <input name="quantityL" type="text" class="form-control" value="${detail.quantityL}" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Số lượng XL</label>
-                                <br>
-                                <input name="quantityXL" type="text" class="form-control" value="${detail.quantityXL}" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Số lượng 2XL</label>
-                                <br>
-                                <input name="quantity2XL" type="text" class="form-control" value="${detail.quantity2XL}" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Gía</label>
-                                <br>
-                                <input name="price" type="text" class="form-control" value="${detail.price}" required>
+                            <div class="div-info">
+                                <div class="form-group">
+                                    <label>Gía</label>
+                                    <input name="price" type="text"  oninput="formatNumberInput(this)" value="<fmt:formatNumber pattern="###,##0" value="${detail.price}"/>" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại sản phẩm</label>
+                                    <select name="category_id" class="form-select" aria-label="Default select example">
+                                        <c:forEach items="${listC}" var="o">
+                                            <option value="${o.category_id}">${o.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <br>
                                 <textarea name="describe" class="form-control"required>${detail.describe}</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh 1</label>
-                                <br>
                                 <input name="image1" type="text" class="form-control" value="${detail.image1}" required>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh 2</label>
-                                <br>
                                 <input name="image2" type="text" class="form-control" value="${detail.image2}" required>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh 3</label>
-                                <br>
                                 <input name="image3" type="text" class="form-control" value="${detail.image3}" required>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh 4</label>
-                                <br>
                                 <input name="image4" type="text" class="form-control" value="${detail.image4}" required>
                             </div>
-                            <div class="form-group">
-                                <label>Loại sản phẩm</label>
-                                <br>      
-                                <select name="category_id" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listC}" var="o">
-                                        <option value="${o.category_id}">${o.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+
 
                         </div>
                         <div class="modal-footer">
@@ -96,6 +88,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> 
+        <script>
+            function formatNumberInput(input) {
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+        </script>
     </body>
 </html>

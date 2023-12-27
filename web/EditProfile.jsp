@@ -140,7 +140,7 @@
         <div class="main">
             <form action="editprofile" method="get" class="form" id="form2">
 
-                <form action="processorder" method="POST" class="form" id="form2">
+                <form action="invoicing" method="POST" class="form" id="form2">
                     <c:if test="${requestScope.ms != null}">
                         <div class="alert alert-danger" role="alert">
                             Wrong Code
@@ -150,7 +150,7 @@
 
 
                     <div class="form-group">
-                        <label for="email" class="form-label">Tên</label>
+                        <label for="name" class="form-label">Tên</label>
                         <input value="${sessionScope.acc.user_name}" type="text" id="name" name="name" placeholder="Name"class="form-control" required="">
                     </div>
                     <div class="form-group">
@@ -158,11 +158,11 @@
                         <input value="${sessionScope.acc.user_email}" type="text" id="email" name="email" placeholder="Email"class="form-control" required="" readonly="">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="form-label">Password</label>
+                        <label for="password" class="form-label">Password</label>
                         <input value="${password}" type="text" id="password" name="password" placeholder="Password"class="form-control" required="">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="form-label">Địa chỉ</label>
+                        <label for="address" class="form-label">Địa chỉ</label>
                         <input value="${sessionScope.acc.address}" type="text" id="address" name="address" placeholder="Address"class="form-control" required="">
                     </div>
                     <button class="form-submit" type="submit">Continue</button>

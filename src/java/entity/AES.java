@@ -1,4 +1,3 @@
-
 package entity;
 
 import java.io.UnsupportedEncodingException;
@@ -59,6 +58,7 @@ public class AES {
 
         String originalString = "123456789";
         String encryptedString = AES.encrypt(originalString, secretKey);
+        encryptedString = "tSzOO2KZ+wCMSL19ldqFLw==";
         String decryptedString = AES.decrypt(encryptedString, secretKey);
 
         System.out.println(originalString);

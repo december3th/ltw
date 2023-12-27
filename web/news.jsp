@@ -24,95 +24,95 @@
         <link rel="stylesheet" href="./assest/css/create-news.css" />
     </head>
     <body>
-        <div id="app">
-            <jsp:include page="HeaderHome.jsp"></jsp:include>
-            <div class="content">
-                <div class="news clearfix">
-                    <div class="Create-news hidden" id="hidden_update">
-                        <div class="overlay-news"></div>
-                        <div class="content-create-news">
-                            <form action="./news" method="post" class="form-news">
-                                <div class="news-group">
-                                    <label for="news-date">Ngày tạo</label>
-                                    <input name="date" type="date" id="news-date" />
-                                </div>
-                                <div class="news-group">
-                                    <label for="news-image">Ảnh</label>
-                                    <input name="image" type="text" id="news-image" placeholder="đường dẫn ảnh" />
-                                </div>
-                                <div class="news-group">
-                                    <label for="news-title">Tiêu đề</label>
-                                    <input name="title" type="text" id="news-title" placeholder="Nhập tiêu đề" />
-                                </div>
-                                <div class="news-group">
-                                    <label for="news-link">Link chi tiết</label>
-                                    <input name="link" type="text" id="news-link" placeholder="Link bài viết" />
-                                </div>
-                                <div class="news-group">
-                                    <label for="news-desc">Mô tả</label>
-                                    <textarea name="desc" type="text" id="news-desc" cols="30" rows="6"></textarea>
-                                </div>
-                                <div id="Create-new1">
-                                    <button type="submit">Tạo mới</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="content-news1">
-                        <!--noi dung new1 o day-->
-                    <c:forEach items="${requestScope.data}" var="news">
-                        <div class="recommend-news">
-                            <div class="date-news">
-                                <span class="post-date-day">${news.date}</span>
+        <jsp:include page="HeaderHome.jsp"></jsp:include>
+            <div id="app">
+                <div class="content">
+                    <div class="news clearfix">
+                        <div class="Create-news hidden" id="hidden_update">
+                            <div class="overlay-news"></div>
+                            <div class="content-create-news">
+                                <form action="./news" method="post" class="form-news">
+                                    <div class="news-group">
+                                        <label for="news-date">Ngày tạo</label>
+                                        <input name="date" type="date" id="news-date" />
+                                    </div>
+                                    <div class="news-group">
+                                        <label for="news-image">Ảnh</label>
+                                        <input name="image" type="text" id="news-image" placeholder="đường dẫn ảnh" />
+                                    </div>
+                                    <div class="news-group">
+                                        <label for="news-title">Tiêu đề</label>
+                                        <input name="title" type="text" id="news-title" placeholder="Nhập tiêu đề" />
+                                    </div>
+                                    <div class="news-group">
+                                        <label for="news-link">Link chi tiết</label>
+                                        <input name="link" type="text" id="news-link" placeholder="Link bài viết" />
+                                    </div>
+                                    <div class="news-group">
+                                        <label for="news-desc">Mô tả</label>
+                                        <textarea name="desc" type="text" id="news-desc" cols="30" rows="6"></textarea>
+                                    </div>
+                                    <div id="Create-new1">
+                                        <button type="submit">Tạo mới</button>
+                                    </div>
+                                </form>
                             </div>
-                            <a href="${news.link}"
-                               ><img
-                                    src="${news.image}"
-                                    alt=""
-                                    /></a>
-                            <div class="content-news--new">
-                                <div class="content-news--new-1">
-                                    <a href="${news.link}">
-                                        <h4>
-                                            ${news.title}
-                                        </h4>
-                                    </a>
-                                    <a href="${news.link}">
-                                        <p>
-                                            ${news.desc}
-                                        </p>
-                                    </a>
+                        </div>
+
+
+                        <div class="content-news1">
+                            <!--noi dung new1 o day-->
+                        <c:forEach items="${requestScope.data}" var="news">
+                            <div class="recommend-news">
+                                <div class="date-news">
+                                    <span class="post-date-day">${news.date}</span>
                                 </div>
-                                <c:if test="${sessionScope.acc.isAdmin == 1}">
-                                    <div class="delete">
-                                        <a href="/websell/newsdelete?idnews=${news.id}">
-                                            Xóa
+                                <a href="${news.link}"
+                                   ><img
+                                        src="${news.image}"
+                                        alt=""
+                                        /></a>
+                                <div class="content-news--new">
+                                    <div class="content-news--new-1">
+                                        <a href="${news.link}">
+                                            <h4>
+                                                ${news.title}
+                                            </h4>
+                                        </a>
+                                        <a href="${news.link}">
+                                            <p>
+                                                ${news.desc}
+                                            </p>
                                         </a>
                                     </div>
-                                </c:if>
+                                    <c:if test="${sessionScope.acc.isAdmin == 1}">
+                                        <div class="delete">
+                                            <a href="/websell/newsdelete?idnews=${news.id}">
+                                                Xóa
+                                            </a>
+                                        </div>
+                                    </c:if>
+                                </div>
                             </div>
-                        </div>
-                    </c:forEach>                  
+                        </c:forEach>                  
                     </div>
                     <div class="content-news2">
                         <div class="trend-news">
                             <h5>BÀI VIẾT MỚI</h5>
                             <div class="news2-content">
-                            <c:forEach items="${requestScope.data}" var="news">
-                                <div class="blog-post">
-                                    <img
-                                        src="${news.image}"
-                                        alt=""
-                                        />
-                                    <a href="${news.link}"
-                                       ><p>
-                                            ${news.title}
-                                        </p></a
-                                    >
-                                </div>
-                            </c:forEach>     
+                                <c:forEach items="${requestScope.data}" var="news">
+                                    <div class="blog-post">
+                                        <img
+                                            src="${news.image}"
+                                            alt=""
+                                            />
+                                        <a href="${news.link}"
+                                           ><p>
+                                                ${news.title}
+                                            </p></a
+                                        >
+                                    </div>
+                                </c:forEach>     
                             </div>
                         </div>
                     </div>

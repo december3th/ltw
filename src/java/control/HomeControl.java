@@ -1,4 +1,3 @@
-
 package control;
 
 import dao.DAO;
@@ -19,18 +18,20 @@ import java.util.List;
  *
  * @author admin
  */
-@WebServlet(name="HomeControl", urlPatterns={"/home"})
+@WebServlet(name = "HomeControl", urlPatterns = {"/home"})
 public class HomeControl extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //b1 get date from dao
         DAO dao = new DAO();
@@ -42,29 +43,29 @@ public class HomeControl extends HttpServlet {
         request.setAttribute("listP", listP);
         request.setAttribute("listC", listC);
         request.setAttribute("p", last);
-        
+
         // đẩy sizeCart lên trang home 
         String txt = "";
-        Cookie [] arr = request.getCookies();
-        if(arr != null){
-            for(Cookie x : arr){
-                if(x.getName().equals("cart")){
+        Cookie[] arr = request.getCookies();
+        if (arr != null) {
+            for (Cookie x : arr) {
+                if (x.getName().equals("cart")) {
                     txt = x.getValue();
                 }
             }
         }
-        
-        Cart cart = new Cart(txt , listPP);
+
+        Cart cart = new Cart(txt, listPP);
+        System.out.println("Home: " + cart);
         int sizeCart = cart.getItem().size();
         request.setAttribute("sizeCart", sizeCart);
-
-
         request.getRequestDispatcher("Home.jsp").forward(request, response);
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -72,12 +73,13 @@ public class HomeControl extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -85,12 +87,13 @@ public class HomeControl extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

@@ -36,7 +36,7 @@
                         <div class="contact-element">
                             <div class="contact-element-info">
                                 <h2>Cửa hàng 1</h2>
-                                <p>Địa chỉ: Học Viện Công Nghệ Bưu Chính Viễn Thông D20ATTT </p>
+                                <p>Địa chỉ:Học Viện Công Nghệ Bưu Chính Viễn Thông D20ATTT </p>
                                 <span>Điện thoại: 0988289071</span>
                                 <span>Gmail: ltw0308@gmail.com</span>
                                 <span>
@@ -47,7 +47,7 @@
 
                             <div class="contact-element-info">
                                 <h2>Cửa hàng 2</h2>
-                                <p>Địa chỉ: D20ATTT Học viện công nghệ bưu chính viễn thông Lập trình Web Nhóm 03-08</p>
+                                <p>Địa chỉ: D20ATTT PTIT Lập trình Web Nhóm 03-08</p>
                                 <span>Điện thoại: 0988289071</span>
                                 <span>Gmail: ltw0308@gmail.com</span>
                                 <span>

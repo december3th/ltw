@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label>Mật khẩu</label>
                                 <br>       
-                                <input name="user_password" type="text" class="form-control" required>
+                                <input name="user_password" type="password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
