@@ -1,0 +1,257 @@
+.content-admin {
+    margin-top: 12rem;
+}
+
+.admin-content--left {
+    padding: 1rem 1.8rem;
+}
+
+.admin-img {
+    border-radius: 50%;
+    overflow: hidden;
+}
+.admin-img img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.admin-name {
+    margin-top: 2rem;
+}
+
+.admin-name-info {
+    font-size: 2.4rem;
+    line-height: 1.25;
+    color: rgb(48, 48, 48);
+}
+
+.admin-name--nickname {
+    line-height: 1.2;
+    font-size: 2rem;
+    color: rgba(123, 123, 126, 0.8);
+    font-weight: 100;
+}
+
+.admin-edit {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.admin-edit .btn-edit {
+    width: 100%;
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.admin-profile {
+    margin-top: 1.8rem;
+}
+
+.comany,
+.location,
+.date,
+.admin--male_female {
+    display: flex;
+    margin: 1.6rem 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.comany i,
+.location i,
+.date i,
+.admin--male_female i {
+    width: 2.4rem;
+    font-size: 1.6rem;
+    margin-right: 0.5rem;
+}
+
+.comany span,
+.location span,
+.date span,
+.admin--male_female span {
+    font-size: 1.6rem;
+}
+
+.admin-content--right {
+    /* height: 1200px; */
+    /* overflow-y: auto; */
+}
+
+.admin-nav {
+    position: sticky;
+    top: 10rem;
+    left: 0;
+    right: 0;
+    z-index: 88;
+    padding: 2rem 1rem 1rem 1rem;
+    border-bottom: 1px solid #838080;
+    background-color: #fff;
+}
+
+.admin-nav--list {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.admin-nav--item {
+    margin: 0 2rem;
+    font-size: 1.4rem;
+    color: rgba(84, 83, 83, 0.9);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    border-radius: 0.4rem;
+}
+
+.admin-nav--item:hover {
+    background-color: rgba(204, 204, 204, 0.3);
+}
+
+.admin-category {
+    background-color: rgba(204, 204, 204, 0.4);
+    /* height: 1005px; */
+    /* height: 100%; */
+    padding: 1rem 0;
+    /* overflow: hidden; */
+}
+
+.admin-category--product {
+    background-color: #fff;
+    margin: 0 1rem 2rem 1rem;
+    padding-bottom: 1rem;
+}
+
+.category--product_item {
+    height: 10rem;
+    display: flex;
+    border-bottom: 0.8px dashed #ccc;
+    margin-bottom: 1.8rem;
+    padding: 1rem 0.8rem 1rem 0;
+    margin-left: 0.8rem;
+}
+
+.category--product_item--img {
+    height: 100%;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    overflow: hidden;
+    box-shadow: 0 0 0.4rem #ccc;
+    border: 1px solid #525151;
+}
+
+.category--product_item--img img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.category--product_item--title {
+    font-size: 1.6rem;
+    color: #585858;
+    margin-left: 1rem;
+}
+
+.category--product_item--price {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.admin-product__old {
+    text-decoration: line-through;
+    margin: 0 0.8rem;
+    font-size: 1.8rem;
+    color: #ccc;
+}
+
+.admin-product__sale {
+    margin: 0 0.8rem;
+    font-size: 1.8rem;
+    color: #ee4d2d;
+}
+
+.earn-money {
+    padding: 0 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.8rem;
+}
+
+.earn-money span {
+    font-size: 2.8rem;
+    color: #ee4d2d;
+    margin-left: 1rem;
+}
+
+.repurchase {
+    padding: 0rem 0.8rem 0rem 0;
+    margin-left: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.repurchase .order-count {
+    display: block;
+}
+
+.repurchase .order-count span {
+    display: flex;
+    justify-content: center;
+}
+
+.repurchase button {
+    padding: 1rem 2rem;
+    margin-left: 1.8rem;
+    font-size: 2.4rem;
+    color: #838080;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.repurchase button:hover {
+    /* transform: scale(0.8); */
+    background-color: #ee4d2d;
+    color: #fff;
+}
+
+.form-gr {
+    margin: 1.8rem 0;
+}
+
+.form-lb {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 0.3rem;
+}
+
+.colu {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 1rem 0.8rem 0.5rem 0.8rem;
+    font-size: 1.4rem;
+}
+
+.ro {
+    display: flex;
+    align-items: center;
+}
+
+.ro label {
+    width: 2.8rem;
+}
+
+.ro label i {
+    font-size: 1.8rem;
+}
+
+.ro input {
+    font-size: 1.4rem;
+    flex: 1;
+}

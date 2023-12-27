@@ -1,0 +1,20 @@
+/* mobie & tablet */
+@media (max-width: 1023px) {
+    html{
+        font-size: 50%;
+    }
+    .footer--content,
+    .slides-contents{
+        padding: 8px ;
+    }
+}
+
+@media (max-width: 740px) {
+    .header .wide .header-center{
+        display: none;
+    }
+
+    .header .wide .nav-bar--extra{
+        display: block;
+    }
+}

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+input,
+button {
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+ul,
+li {
+    list-style: none;
+}
+img {
+    display: block;
+}
+
+textarea {
+    resize: vertical;
+    padding: 1rem;
+    font-size: 1.4rem;
+}

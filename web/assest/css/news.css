@@ -1,0 +1,156 @@
+.news {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+.content-news1 {
+    width: 70%;
+    margin-top: 13rem;
+    float: left;
+}
+.recommend-news {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 25px;
+    margin-top: 36px;
+    position: relative;
+    /* border-top: 1px solid grey;
+    border-bottom: 1px solid grey; */
+    display:flex;
+
+}
+.date-news {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    line-height: 30px;
+    margin-top: 20px;
+    border: 2px solid #11519B;
+    color: #11519B;
+    background-color: white;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color .3s, color .3s, border .3s;
+}
+.date-news .post-date-day {
+    margin-top: 5px;
+    margin-left: -5px;
+    position: absolute;
+    left: 10px;
+}
+.date-news:hover {
+    color: white;
+    background-color: #11519B;
+}
+.recommend-news img {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+    margin: 10px;
+    float: left;
+}
+.recommend-news h4 {
+    margin-top: 10px;
+    font-size: 20px;
+    word-wrap: break-word;
+    line-height: 25px;
+    font-weight: 600;
+    /*padding-top: 25px;*/
+}
+.recommend-news p {
+    font-size: 14px;
+    margin-top: 18px;
+    word-wrap: break-word;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.content-news--new-1{
+    padding-right: 30px; 
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.content-news2 {
+    width: 20%;
+    margin-top: 13rem;
+    float: left;
+}
+.trend-news {
+    width: 100%;
+}
+.trend-news h5 {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+.blog-post{
+    width: 100%;
+    height: 80px;
+    margin-left: 6px;
+    border-top: 1px solid grey;
+}
+.blog-post img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    float: left;
+}
+.blog-post p {
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.content-news--new {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.delete {
+    width:60px;
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #000;
+    margin-bottom: 12px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+}
+.pagination a {
+    color: black;
+    font-size: 22px;
+    margin: 0 5px; /* Add margin between each page */
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid black; /* Add border to the anchor elements */
+    border-radius: 5px; /* Add rounded corners */
+    transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: blue;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: chocolate;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+}
+
+.pagination a:active {
+    transform: scale(0.95); /* Add a slight scale down effect on click */
+}
